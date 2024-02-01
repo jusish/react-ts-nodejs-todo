@@ -1,11 +1,5 @@
-import { UsersStack } from "./components/TodoList";
-
 function App() {
-  return (
-    <div>
-      <UsersStack />
-    </div>
-  );
+  return <div></div>;
 }
 
 export default App;
