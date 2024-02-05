@@ -9,6 +9,19 @@ exports.getAllTodos = async (req, res) => {
   }
 };
 
+exports.getTodoById = async (req, res) => {
+  try {
+    const todo = await Todo.findById(req.params.id);
+    if (!todo) {
+      return res.status(404).json({ error: "Todo Not Found" });
+    }
+    res.json(todo);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server error" });
+  }
+};
+
 exports.addTodo = async (req, res) => {
   try {
     const { title, startDate, endDate } = req.body;
