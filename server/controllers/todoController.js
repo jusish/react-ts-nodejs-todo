@@ -1,6 +1,6 @@
 const Todo = require("../models/TodoModel");
 
-exports.getAllTodos = async (res, req) => {
+exports.getAllTodos = async (req, res) => {
   try {
     const todos = await Todo.find();
     res.json(todos);
@@ -12,13 +12,22 @@ exports.getAllTodos = async (res, req) => {
 exports.addTodo = async (req, res) => {
   try {
     const { title, startDate, endDate } = req.body;
+
+    if (!title) {
+      return res.status(400).json({ error: "Title is required" });
+    }
+
     const newTodo = new Todo({
       title,
       startDate,
       endDate,
     });
+
     await newTodo.save();
-    res.status(201).json(newTodo);
+
+    const createdTodo = await Todo.findById(newTodo._id);
+
+    res.status(201).json(createdTodo);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal Server error" });
