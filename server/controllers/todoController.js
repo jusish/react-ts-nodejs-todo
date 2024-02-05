@@ -34,6 +34,7 @@ exports.addTodo = async (req, res) => {
       title,
       startDate,
       endDate,
+      completed: false,
     });
 
     await newTodo.save();
@@ -64,5 +65,21 @@ exports.deleteTodo = async (req, res) => {
     res.json({ success: true });
   } catch (error) {
     res.status(500).json({ error: "Internal Server error" });
+  }
+};
+
+exports.markTodoAsCompleted = async (req, res) => {
+  try {
+    const todo = await Todo.findById(req.params.id);
+    if (!todo) {
+      return res.status(404).json({ error: "Todo Not Found" });
+    }
+
+    todo.completed = true;
+    await todo.save();
+    res.json(todo);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
