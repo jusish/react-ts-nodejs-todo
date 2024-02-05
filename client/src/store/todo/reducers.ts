@@ -1,4 +1,12 @@
-import { TodoState, TodoActionTypes, GET_TODOS, ADD_TODO } from "./types";
+import {
+  TodoState,
+  TodoActionTypes,
+  GET_TODOS,
+  ADD_TODO,
+  //   UPDATE_TODO,
+  //   DELETE_TODO,
+  //   MARK_COMPLETED,
+} from "./types";
 
 const initialState: TodoState = {
   todos: [],
@@ -19,7 +27,6 @@ const todoReducer = (
         ...state,
         todos: [...state.todos, action.payload],
       };
-
     default:
       return state;
   }
