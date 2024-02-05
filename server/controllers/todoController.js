@@ -22,12 +22,40 @@ exports.getTodoById = async (req, res) => {
   }
 };
 
+exports.getTodosByTitle = async (req, res) => {
+  try {
+    const titleQuery = req.params.title;
+
+    if (!titleQuery) {
+      return res
+        .status(400)
+        .json({ error: "Title parameter is required for search" });
+    }
+
+    const todos = await Todo.find({
+      title: { $regex: titleQuery, $options: "i" },
+    });
+
+    res.json(todos);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server error" });
+  }
+};
+
 exports.addTodo = async (req, res) => {
   try {
     const { title, startDate, endDate } = req.body;
 
     if (!title) {
       return res.status(400).json({ error: "Title is required" });
+    }
+    const existingTodo = await Todo.findOne({ title });
+
+    if (existingTodo) {
+      return res
+        .status(400)
+        .json({ error: "Todo with the same title already exists" });
     }
 
     const newTodo = new Todo({
