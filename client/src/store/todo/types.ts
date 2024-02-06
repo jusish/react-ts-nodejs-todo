@@ -4,6 +4,10 @@ export const DELETE_TODO = "DELETE_TODO";
 export const UPDATE_TODO = "UPDATE_TODO";
 export const MARK_COMPLETED = "MARK_COMPLETED";
 
+
+export type AppDispatch = (action: TodoActionTypes) => void;
+
+
 export interface Todo {
   _id: string;
   title: string;
