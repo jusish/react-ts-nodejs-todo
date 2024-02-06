@@ -3,9 +3,9 @@ import {
   TodoActionTypes,
   GET_TODOS,
   ADD_TODO,
-  //   UPDATE_TODO,
-  //   DELETE_TODO,
-  //   MARK_COMPLETED,
+  DELETE_TODO,
+  UPDATE_TODO,
+  MARK_COMPLETED,
 } from "./types";
 
 const initialState: TodoState = {
@@ -27,6 +27,28 @@ const todoReducer = (
         ...state,
         todos: [...state.todos, action.payload],
       };
+
+    case DELETE_TODO:
+      return {
+        ...state,
+        todos: state.todos.filter((todo) => todo._id !== action.payload),
+      };
+    case UPDATE_TODO:
+      return {
+        ...state,
+        todos: state.todos.map((todo) =>
+          todo._id === action.payload._id ? action.payload : todo
+        ),
+      };
+
+    case MARK_COMPLETED:
+      return {
+        ...state,
+        todos: state.todos.map((todo) =>
+          todo._id === action.payload ? { ...todo, completed: true } : todo
+        ),
+      };
+
     default:
       return state;
   }
