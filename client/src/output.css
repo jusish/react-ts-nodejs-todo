@@ -548,10 +548,6 @@ video {
   display: flex;
 }
 
-.flex-row {
-  flex-direction: row;
-}
-
 .items-center {
   align-items: center;
 }
@@ -560,11 +556,12 @@ video {
   justify-content: center;
 }
 
-.text-center {
-  text-align: center;
-}
-
 .text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+
+.text-red-200 {
+  --tw-text-opacity: 1;
+  color: rgb(254 202 202 / var(--tw-text-opacity));
 }
