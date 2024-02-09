@@ -50,3 +50,5 @@ export const { getTodos, addTodo, deleteTodo, updateTodo, markCompleted } =
   todoSlice.actions;
 
 export const selecteTodos = (state: RootState) => state.todo.todos;
+
+export default todoSlice.reducer
