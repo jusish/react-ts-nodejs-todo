@@ -1,11 +1,20 @@
+// TodoList.tsx
+import React from "react";
+import { useSelector } from "react-redux";
 import TodoItem from "./TodoItem";
+import { TodoState } from "@/store/todo/types";
 
-const TodoList = () => {
+const TodoList: React.FC = () => {
+  
+  const todos = useSelector((state : TodoState) => state.todos);
+
   return (
-    <div className="  justify-center flex items-center">
-      <h1 className=" text-red-200">Available todos</h1>
+    <div>
+      <h2 className="mb-4 text-xl font-bold">Todo List</h2>
       <div>
-        <TodoItem />
+        {todos.map((todo) => (
+          <TodoItem key={todo._id} todo={todo} />
+        ))}
       </div>
     </div>
   );
