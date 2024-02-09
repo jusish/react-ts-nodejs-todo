@@ -12,7 +12,7 @@ import {
 
 export const getTodos = () => async (dispatch: Dispatch<TodoActionTypes>) => {
   try {
-    const res = await axios.get("/todos");
+    const res = await axios.get("http://localhost:5000/todos");
     dispatch({
       type: GET_TODOS,
       payload: res.data,
@@ -25,7 +25,7 @@ export const getTodos = () => async (dispatch: Dispatch<TodoActionTypes>) => {
 export const addTodo =
   (todoData: Todo) => async (dispatch: Dispatch<TodoActionTypes>) => {
     try {
-      const res = await axios.post("/todos", todoData);
+      const res = await axios.post("http://localhost:5000/todos", todoData);
       dispatch({
         type: ADD_TODO,
         payload: res.data,
@@ -38,7 +38,10 @@ export const addTodo =
 export const updateTodo =
   (todoData: Todo) => async (dispatch: Dispatch<TodoActionTypes>) => {
     try {
-      const res = await axios.put(`/todos/${todoData._id}`, todoData);
+      const res = await axios.put(
+        `http://localhost:5000/todos/${todoData._id}`,
+        todoData
+      );
       dispatch({
         type: UPDATE_TODO,
         payload: res.data,
@@ -52,27 +55,27 @@ export const updateTodo =
 export const deleteTodo =
   (todoId: string) => async (dispatch: Dispatch<TodoActionTypes>) => {
     try {
-      await axios.delete(`/todos/${todoId}`);
+      await axios.delete(`http://localhost:5000/todos/${todoId}`);
       dispatch({
         type: DELETE_TODO,
         payload: todoId,
       });
     } catch (error) {
       console.error("Error deleting todo:", error);
-      // Handle error as needed
     }
   };
 
 export const markCompleted =
   (todoId: string) => async (dispatch: Dispatch<TodoActionTypes>) => {
     try {
-      const res = await axios.put(`/todos/${todoId}/completed`);
+      const res = await axios.put(
+        `http://localhost:5000/todos/${todoId}/completed`
+      );
       dispatch({
         type: MARK_COMPLETED,
         payload: res.data,
       });
     } catch (error) {
       console.error("Error marking todo as completed:", error);
-      // Handle error as needed
     }
   };
