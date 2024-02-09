@@ -23,8 +23,8 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
     <div className="flex items-center justify-between px-4 py-2 border-b-2">
       <div>
         <h3 className={todo.completed ? "line-through" : ""}>{todo.title}</h3>
-        <p>Start Date: {todo.startDate.toLocaleDateString()}</p>
-        <p>End Date: {todo.endDate.toLocaleDateString()}</p>
+        <p>Start Date: {todo.startDate.toString()}</p>
+        <p>End Date: {todo.endDate.toString()}</p>
       </div>
       <div>
         {!todo.completed && (
