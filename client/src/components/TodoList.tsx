@@ -23,12 +23,20 @@ const TodoList: React.FC = () => {
       setTodos(res.data);
     };
     fetchOnRender();
-  }, []);
+  }, [dispatch]);
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <h2 className="mt-24 mb-4 text-xl font-bold">Todo List</h2>
-      <div className="flex flex-col items-center justify-center p-10">
+    <div className="flex flex-col items-center justify-center ">
+      <h2 className="mt-24 mb-4 text-5xl font-bold">Todo List</h2>
+      <div>
+        <button className="px-3 py-1 m-2 text-white bg-blue-500 rounded">
+          Show Completed
+        </button>
+        <button className="px-3 py-1 m-2 text-white bg-blue-500 rounded">
+          Add Todo
+        </button>
+      </div>
+      <div className="flex flex-row flex-wrap items-center justify-center gap-10 p-10">
         {todos?.map((todo: any) => (
           <TodoItem key={todo._id} todo={todo} />
         ))}
