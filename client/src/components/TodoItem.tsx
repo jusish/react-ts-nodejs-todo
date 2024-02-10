@@ -23,7 +23,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
     <div
       className={
         todo.completed
-          ? " hidden text-gray-50  mb-10 bg-slate-900 max-w-[500px] p-10 rounded-lg"
+          ? "  text-gray-50  mb-10 bg-slate-900 max-w-[500px] p-10 rounded-lg"
           : " text-gray-50  mb-10 bg-slate-900 max-w-[500px] p-10 rounded-lg"
       }
     >
