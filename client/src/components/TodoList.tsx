@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// TodoList.tsx
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import TodoItem from "./TodoItem";
@@ -27,9 +26,9 @@ const TodoList: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <h2 className="mb-4 text-xl font-bold">Todo List</h2>
-      <div>
+    <div className="flex flex-col items-center justify-center">
+      <h2 className="mt-24 mb-4 text-xl font-bold">Todo List</h2>
+      <div className="flex flex-col items-center justify-center p-10">
         {todos?.map((todo: any) => (
           <TodoItem key={todo._id} todo={todo} />
         ))}
