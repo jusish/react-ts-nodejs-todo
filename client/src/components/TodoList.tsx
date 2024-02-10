@@ -1,15 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+// TodoList.tsx
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import TodoItem from "./TodoItem";
 import { GET_TODOS } from "@/store/todo/types";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import TodoForm from "./TodoForm";
 
 const TodoList: React.FC = () => {
   const dispatch = useDispatch();
 
-  const [todos, setTodos] = useState([]);
-
+  const [todos, setTodos] = useState<any[]>([]);
+  const [showCompleted, setShowCompleted] = useState(false);
   useEffect(() => {
     const fetchOnRender = async () => {
       const res = await axios.get("http://localhost:5000/todos");
@@ -25,19 +29,35 @@ const TodoList: React.FC = () => {
     fetchOnRender();
   }, [dispatch]);
 
+  const handleShowCompleted = () => {
+    setShowCompleted(!showCompleted); // Toggle showCompleted state
+  };
+
+  // Filter todos based on showCompleted state
+  const filteredTodos = showCompleted
+    ? todos.filter((todo) => todo.completed)
+    : todos;
+
   return (
     <div className="flex flex-col items-center justify-center ">
       <h2 className="mt-24 mb-4 text-5xl font-bold">Todo List</h2>
-      <div>
-        <button className="px-3 py-1 m-2 text-white bg-blue-500 rounded">
-          Show Completed
+      <div className="">
+        <button
+          className="px-3 py-1 m-2 text-white bg-blue-500 rounded"
+          onClick={handleShowCompleted}
+        >
+          {showCompleted ? "Hide Completed" : "Show Completed"}
         </button>
-        <button className="px-3 py-1 m-2 text-white bg-blue-500 rounded">
+        <Link
+          to={"/add"}
+          className="px-3 py-1 m-2 text-white bg-blue-500 rounded"
+        >
           Add Todo
-        </button>
+        </Link>
       </div>
+      <TodoForm />
       <div className="flex flex-row flex-wrap items-center justify-center gap-10 p-10">
-        {todos?.map((todo: any) => (
+        {filteredTodos.map((todo: any) => (
           <TodoItem key={todo._id} todo={todo} />
         ))}
       </div>

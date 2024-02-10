@@ -1,12 +1,17 @@
+// index.tsx or App.tsx
 import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import TodoList from "./components/TodoList";
-import "./App.css";
+import TodoForm from "./components/TodoForm";
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <TodoList />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" Component={TodoList} />
+        <Route path="/add" Component={TodoForm} />
+      </Routes>
+    </Router>
   );
 };
 
