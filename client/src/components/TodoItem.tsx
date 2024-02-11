@@ -1,12 +1,28 @@
 // TodoItems.tsx
-import React from "react";
-import { Todo } from "../store/todo/types";
+import React, { Dispatch } from "react";
+import { Todo, TodoActionTypes } from "../store/todo/types";
 import { useDispatch } from "react-redux";
-import { deleteTodo, markCompleted } from "../state/todoSlice";
+import { markCompleted } from "../state/todoSlice";
+import axios from "axios";
+import { DELETE_TODO } from "../store/todo/types";
 
 interface TodoItemProps {
   todo: Todo;
 }
+
+const deleteTodo =
+  (todoId: string) => async (dispatch: Dispatch<TodoActionTypes>) => {
+    try {
+      await axios.delete(`http://localhost:5000/todos/${todoId}`);
+      dispatch({
+        type: DELETE_TODO,
+        payload: todoId,
+      });
+      window.location.reload();
+    } catch (error) {
+      console.error("Error deleting todo:", error);
+    }
+  };
 
 const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
   const dispatch = useDispatch();
