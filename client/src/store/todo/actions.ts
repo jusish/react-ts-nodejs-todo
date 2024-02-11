@@ -30,6 +30,7 @@ export const addTodo =
         type: ADD_TODO,
         payload: res.data,
       });
+      window.location.reload(); // Refresh the page after adding a todo
     } catch (error) {
       console.error("Error adding todo:", error);
     }
@@ -46,6 +47,7 @@ export const updateTodo =
         type: UPDATE_TODO,
         payload: res.data,
       });
+      window.location.reload();
     } catch (error) {
       console.error("Error updating todo:", error);
       // Handle error as needed
@@ -60,6 +62,7 @@ export const deleteTodo =
         type: DELETE_TODO,
         payload: todoId,
       });
+      window.location.reload();
     } catch (error) {
       console.error("Error deleting todo:", error);
     }
@@ -75,6 +78,7 @@ export const markCompleted =
         type: MARK_COMPLETED,
         payload: res.data,
       });
+      window.location.reload();
     } catch (error) {
       console.error("Error marking todo as completed:", error);
     }
