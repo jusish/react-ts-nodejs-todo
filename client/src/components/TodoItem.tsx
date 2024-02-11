@@ -4,6 +4,7 @@ import { MARK_COMPLETED, Todo, TodoActionTypes } from "../store/todo/types";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { DELETE_TODO } from "../store/todo/types";
+import { Link } from "react-router-dom";
 
 interface TodoItemProps {
   todo: Todo;
@@ -23,7 +24,7 @@ const deleteTodo =
     }
   };
 
-  export const markCompleted =
+export const markCompleted =
   (todoId: string) => async (dispatch: Dispatch<TodoActionTypes>) => {
     try {
       const res = await axios.put(
@@ -82,9 +83,12 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
             >
               Complete
             </button>
-            <button className="px-3 py-1 m-2 text-white bg-blue-500 rounded">
+            <Link
+              to={`/edit/${todo._id}`}
+              className="px-3 py-1 m-2 text-white bg-blue-500 rounded"
+            >
               edit
-            </button>
+            </Link>
           </div>
         )}
         <button
