@@ -7,7 +7,6 @@ import TodoItem from "./TodoItem";
 import { GET_TODOS } from "@/store/todo/types";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import TodoForm from "./TodoForm";
 
 const TodoList: React.FC = () => {
   const dispatch = useDispatch();
@@ -55,7 +54,6 @@ const TodoList: React.FC = () => {
           Add Todo
         </Link>
       </div>
-      <TodoForm />
       <div className="flex flex-row flex-wrap items-center justify-center gap-10 p-10">
         {filteredTodos.map((todo: any) => (
           <TodoItem key={todo._id} todo={todo} />
