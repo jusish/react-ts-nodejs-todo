@@ -42,14 +42,14 @@ const TodoList: React.FC = () => {
       <h2 className="mt-24 mb-4 text-5xl font-bold">Todo List</h2>
       <div className="">
         <button
-          className="px-3 py-1 m-2 text-white bg-blue-500 rounded"
+          className="px-3 py-2 m-2 text-white bg-blue-500 rounded"
           onClick={handleShowCompleted}
         >
           {showCompleted ? "Hide Completed" : "Show Completed"}
         </button>
         <Link
           to={"/add"}
-          className="px-3 py-1 m-2 text-white bg-blue-500 rounded"
+          className="px-3 py-2 m-2 text-white bg-blue-500 rounded"
         >
           Add Todo
         </Link>
