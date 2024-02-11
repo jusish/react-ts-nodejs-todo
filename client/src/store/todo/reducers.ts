@@ -27,7 +27,6 @@ const todoReducer = (
         ...state,
         todos: [...state.todos, action.payload],
       };
-
     case DELETE_TODO:
       return {
         ...state,
@@ -40,7 +39,6 @@ const todoReducer = (
           todo._id === action.payload._id ? action.payload : todo
         ),
       };
-
     case MARK_COMPLETED:
       return {
         ...state,
@@ -48,7 +46,6 @@ const todoReducer = (
           todo._id === action.payload ? { ...todo, completed: true } : todo
         ),
       };
-
     default:
       return state;
   }
