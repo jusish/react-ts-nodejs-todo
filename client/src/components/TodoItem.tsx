@@ -1,8 +1,7 @@
 // TodoItems.tsx
 import React, { Dispatch } from "react";
-import { Todo, TodoActionTypes } from "../store/todo/types";
+import { MARK_COMPLETED, Todo, TodoActionTypes } from "../store/todo/types";
 import { useDispatch } from "react-redux";
-import { markCompleted } from "../state/todoSlice";
 import axios from "axios";
 import { DELETE_TODO } from "../store/todo/types";
 
@@ -21,6 +20,22 @@ const deleteTodo =
       window.location.reload();
     } catch (error) {
       console.error("Error deleting todo:", error);
+    }
+  };
+
+  export const markCompleted =
+  (todoId: string) => async (dispatch: Dispatch<TodoActionTypes>) => {
+    try {
+      const res = await axios.put(
+        `http://localhost:5000/todos/${todoId}/completed`
+      );
+      dispatch({
+        type: MARK_COMPLETED,
+        payload: res.data,
+      });
+      window.location.reload();
+    } catch (error) {
+      console.error("Error marking todo as completed:", error);
     }
   };
 
