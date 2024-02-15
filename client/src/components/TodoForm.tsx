@@ -1,15 +1,18 @@
-// TodoForm.tsx
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTodo } from "../store/todo/actions";
+import { useNavigate } from "react-router-dom";
 
 const TodoForm: React.FC = () => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
+    _id: "",
     title: "",
     startDate: "",
     endDate: "",
+    completed: false,
   });
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -21,10 +24,14 @@ const TodoForm: React.FC = () => {
     dispatch(addTodo(formData));
 
     setFormData({
+      _id: "",
       title: "",
       startDate: "",
       endDate: "",
+      completed: false,
     });
+
+    navigate("/");
   };
 
   return (
@@ -44,7 +51,7 @@ const TodoForm: React.FC = () => {
           <input
             type="date"
             name="startDate"
-            value={formData.startDate}
+            value={formData.startDate.toString()}
             onChange={handleChange}
             placeholder="Start Date"
             required
@@ -53,7 +60,7 @@ const TodoForm: React.FC = () => {
           <input
             type="date"
             name="endDate"
-            value={formData.endDate}
+            value={formData.endDate.toString()}
             onChange={handleChange}
             placeholder="End Date"
             required
