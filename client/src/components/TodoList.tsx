@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-// TodoList.tsx
+
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import TodoItem from "./TodoItem";
