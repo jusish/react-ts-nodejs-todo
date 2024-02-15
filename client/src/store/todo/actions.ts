@@ -22,6 +22,19 @@ export const getTodos = () => async (dispatch: Dispatch<TodoActionTypes>) => {
   }
 };
 
+export const getTodoById =
+  (todoId: string) => async (dispatch: Dispatch<TodoActionTypes>) => {
+    try {
+      const res = await axios.get(`http://localhost:5000/todos/${todoId}`);
+      dispatch({
+        type: GET_TODOS,
+        payload: res.data,
+      });
+    } catch (error) {
+      console.error("Error fetching todo by ID:", error);
+    }
+  };
+
 export const addTodo =
   (todoData: Todo) => async (dispatch: Dispatch<TodoActionTypes>) => {
     try {
