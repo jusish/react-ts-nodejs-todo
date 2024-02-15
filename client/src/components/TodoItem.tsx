@@ -24,7 +24,7 @@ const deleteTodo =
     }
   };
 
-export const markCompleted =
+const markCompleted =
   (todoId: string) => async (dispatch: Dispatch<TodoActionTypes>) => {
     try {
       const res = await axios.put(
